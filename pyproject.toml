@@ -1,0 +1,15 @@
+[project]
+name = "squaredle-solver"
+version = "0.1.0"
+description = "Automated daily Squaredle puzzle solver"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "requests>=2.32.4",
+]
+
+[project.scripts]
+squaredle-solver = "squaredle_solver:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/"]
