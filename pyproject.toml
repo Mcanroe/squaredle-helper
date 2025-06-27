@@ -1,7 +1,7 @@
 [project]
-name = "squaredle-solver"
+name = "squaredle-helper"
 version = "0.1.0"
-description = "Automated daily Squaredle puzzle solver"
+description = "Automated daily Squaredle puzzle helper"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
@@ -9,7 +9,7 @@ dependencies = [
 ]
 
 [project.scripts]
-squaredle-solver = "squaredle_solver:main"
+squaredle-helper = "squaredle_helper:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/"]
