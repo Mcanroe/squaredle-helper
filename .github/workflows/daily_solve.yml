@@ -3,7 +3,7 @@ name: Daily Squaredle Solver
 on:
   schedule:
     - cron: '0 20 * * *'  # Daily at 8 PM UTC (9 PM BST)
-  workflow_dispatch:  # Allow manual runs
+  workflow_dispatch: 
 
 permissions:
   contents: read
@@ -34,7 +34,7 @@ jobs:
         uses: actions/configure-pages@v4
         
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v3
         with:
           path: ./docs
 
