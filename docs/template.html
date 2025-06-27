@@ -27,7 +27,6 @@
             border-radius: 16px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1);
             overflow: hidden;
-            backdrop-filter: blur(10px);
         }
         
         .header {
@@ -35,32 +34,12 @@
             color: #f7fafc;
             padding: 40px 30px;
             text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, transparent 30%, rgba(74, 85, 104, 0.1) 50%, transparent 70%);
-            animation: shimmer 3s infinite;
-        }
-        
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
         }
         
         .header h1 {
             font-size: 2.5rem;
             margin-bottom: 10px;
             font-weight: 700;
-            position: relative;
-            z-index: 1;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
         
@@ -68,32 +47,11 @@
             font-size: 1.2rem;
             opacity: 0.8;
             font-weight: 300;
-            position: relative;
-            z-index: 1;
         }
         
         .content {
             padding: 30px;
             background: #1e1e1e;
-        }
-        
-        .intro {
-            background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
-            border-left: 4px solid #63b3ed;
-            padding: 20px;
-            margin-bottom: 30px;
-            border-radius: 0 12px 12px 0;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        }
-        
-        .intro p {
-            font-size: 1.1rem;
-            color: #e2e8f0;
-            margin-bottom: 10px;
-        }
-        
-        .solutions {
-            margin-top: 20px;
         }
         
         .word-group {
@@ -116,7 +74,7 @@
         
         .word-list {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
             gap: 10px;
         }
         
@@ -131,6 +89,8 @@
             font-size: 0.95rem;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            user-select: none;
         }
         
         .word:hover {
@@ -139,6 +99,17 @@
             transform: translateY(-2px) scale(1.02);
             box-shadow: 0 8px 16px rgba(99, 179, 237, 0.3);
             border-color: #63b3ed;
+        }
+        
+        .word.revealed {
+            background: linear-gradient(145deg, #38a169 0%, #2f855a 100%);
+            border-color: #68d391;
+            color: #f0fff4;
+        }
+        
+        .word.revealed:hover {
+            background: linear-gradient(145deg, #48bb78 0%, #38a169 100%);
+            box-shadow: 0 8px 16px rgba(104, 211, 145, 0.3);
         }
         
         .footer {
@@ -165,44 +136,6 @@
             text-decoration: underline;
         }
         
-        .stats {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-        
-        .stat {
-            text-align: center;
-            background: linear-gradient(145deg, #2d3748 0%, #4a5568 100%);
-            padding: 18px 24px;
-            border-radius: 12px;
-            border: 1px solid #718096;
-            min-width: 120px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.2s ease;
-        }
-        
-        .stat:hover {
-            transform: translateY(-2px);
-        }
-        
-        .stat-number {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #63b3ed;
-            display: block;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-        }
-        
-        .stat-label {
-            font-size: 0.9rem;
-            color: #a0aec0;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
         @media (max-width: 600px) {
             body {
                 padding: 10px;
@@ -221,9 +154,6 @@
                 gap: 8px;
             }
             
-            .stats {
-                gap: 15px;
-            }
         }
         .disclaimer {
             background: linear-gradient(135deg, #2c5530 0%, #38a169 100%);
@@ -258,24 +188,32 @@
         </header>
         
         <main class="content">
-            <div class="stats">
-                {{STATS}}
-            </div>
-            
-            <div class="solutions">
-                {{CONTENT}}
-            </div>
+            {{CONTENT}}
             
             <div class="disclaimer">
-                <p><strong>Please use responsibly:</strong> This site is designed to help when you're truly stuck on a puzzle, not to skip the challenge entirely.</p>
-                <p>To that end, new solutions are published daily at <strong>9 PM BST</strong>.</p>
+                <p><strong>Please use responsibly:</strong> This site is designed to help when you're truly stuck on a puzzle, not to skip the challenge entirely or cheat the leaderboard.</p>
+                <p>To that end, new solutions are published daily at <strong>9 PM BST</strong> and optional words are not revealed.</p>
             </div>
         </main>
         
         <footer class="footer">
             <p> This site is in no way affiliated with Squaredle. Please visit <a href="https://squaredle.app" target="_blank">Squaredle</a> to play the official game and support them! </p>
-            <p>This project is open source and available on <a href="https://github.com" target="_blank">GitHub</a>.</p>
+            <p>This project is open source and available on <a href="https://github.com/Mcanroe/squaredle-helper" target="_blank">GitHub</a>.</p>
         </footer>
     </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const words = document.querySelectorAll('.word[data-word]');
+            
+            words.forEach(word => {
+                word.addEventListener('click', function() {
+                    const isRevealed = this.classList.contains('revealed');
+                    this.textContent = isRevealed ? this.getAttribute('data-hidden') : this.getAttribute('data-word');
+                    this.classList.toggle('revealed');
+                });
+            });
+        });
+    </script>
 </body>
 </html>

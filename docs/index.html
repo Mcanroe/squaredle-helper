@@ -27,7 +27,6 @@
             border-radius: 16px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1);
             overflow: hidden;
-            backdrop-filter: blur(10px);
         }
         
         .header {
@@ -35,32 +34,12 @@
             color: #f7fafc;
             padding: 40px 30px;
             text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, transparent 30%, rgba(74, 85, 104, 0.1) 50%, transparent 70%);
-            animation: shimmer 3s infinite;
-        }
-        
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
         }
         
         .header h1 {
             font-size: 2.5rem;
             margin-bottom: 10px;
             font-weight: 700;
-            position: relative;
-            z-index: 1;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
         
@@ -68,32 +47,11 @@
             font-size: 1.2rem;
             opacity: 0.8;
             font-weight: 300;
-            position: relative;
-            z-index: 1;
         }
         
         .content {
             padding: 30px;
             background: #1e1e1e;
-        }
-        
-        .intro {
-            background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
-            border-left: 4px solid #63b3ed;
-            padding: 20px;
-            margin-bottom: 30px;
-            border-radius: 0 12px 12px 0;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        }
-        
-        .intro p {
-            font-size: 1.1rem;
-            color: #e2e8f0;
-            margin-bottom: 10px;
-        }
-        
-        .solutions {
-            margin-top: 20px;
         }
         
         .word-group {
@@ -116,7 +74,7 @@
         
         .word-list {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
             gap: 10px;
         }
         
@@ -131,6 +89,8 @@
             font-size: 0.95rem;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            user-select: none;
         }
         
         .word:hover {
@@ -139,6 +99,17 @@
             transform: translateY(-2px) scale(1.02);
             box-shadow: 0 8px 16px rgba(99, 179, 237, 0.3);
             border-color: #63b3ed;
+        }
+        
+        .word.revealed {
+            background: linear-gradient(145deg, #38a169 0%, #2f855a 100%);
+            border-color: #68d391;
+            color: #f0fff4;
+        }
+        
+        .word.revealed:hover {
+            background: linear-gradient(145deg, #48bb78 0%, #38a169 100%);
+            box-shadow: 0 8px 16px rgba(104, 211, 145, 0.3);
         }
         
         .footer {
@@ -165,44 +136,6 @@
             text-decoration: underline;
         }
         
-        .stats {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-        
-        .stat {
-            text-align: center;
-            background: linear-gradient(145deg, #2d3748 0%, #4a5568 100%);
-            padding: 18px 24px;
-            border-radius: 12px;
-            border: 1px solid #718096;
-            min-width: 120px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.2s ease;
-        }
-        
-        .stat:hover {
-            transform: translateY(-2px);
-        }
-        
-        .stat-number {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #63b3ed;
-            display: block;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-        }
-        
-        .stat-label {
-            font-size: 0.9rem;
-            color: #a0aec0;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
         @media (max-width: 600px) {
             body {
                 padding: 10px;
@@ -221,9 +154,6 @@
                 gap: 8px;
             }
             
-            .stats {
-                gap: 15px;
-            }
         }
         .disclaimer {
             background: linear-gradient(135deg, #2c5530 0%, #38a169 100%);
@@ -258,244 +188,95 @@
         </header>
         
         <main class="content">
-            <div class="stats">
-                
-        <div class="stat">
-            <span class="stat-number">110</span>
-            <span class="stat-label">Total Words</span>
-        </div>
-        <div class="stat">
-            <span class="stat-number">70</span>
-            <span class="stat-label">Required</span>
-        </div>
-        <div class="stat">
-            <span class="stat-number">40</span>
-            <span class="stat-label">Bonus</span>
-        </div>
-    
-            </div>
             
-            <div class="solutions">
-                
-            <div class="word-group">
-                <h2>💎 Bonus Word of the Day</h2>
-                <div class="word-list">
-                    <div class="word">COGITO</div>
-                </div>
+        <div class="word-group">
+            <h2>⭐ 4 Letter Words</h2>
+            <div class="word-list">
+                <div class="word" data-word="gong" data-hidden="g**g">g**g</div> <div class="word" data-word="goon" data-hidden="g**n">g**n</div> <div class="word" data-word="grin" data-hidden="g**n">g**n</div> <div class="word" data-word="hoot" data-hidden="h**t">h**t</div> <div class="word" data-word="iron" data-hidden="i**n">i**n</div> <div class="word" data-word="lion" data-hidden="l**n">l**n</div> <div class="word" data-word="loin" data-hidden="l**n">l**n</div> <div class="word" data-word="long" data-hidden="l**g">l**g</div> <div class="word" data-word="loom" data-hidden="l**m">l**m</div> <div class="word" data-word="loon" data-hidden="l**n">l**n</div> <div class="word" data-word="loot" data-hidden="l**t">l**t</div> <div class="word" data-word="moon" data-hidden="m**n">m**n</div> <div class="word" data-word="moor" data-hidden="m**r">m**r</div> <div class="word" data-word="moth" data-hidden="m**h">m**h</div> <div class="word" data-word="nigh" data-hidden="n**h">n**h</div> <div class="word" data-word="noir" data-hidden="n**r">n**r</div> <div class="word" data-word="noon" data-hidden="n**n">n**n</div> <div class="word" data-word="norm" data-hidden="n**m">n**m</div> <div class="word" data-word="ring" data-hidden="r**g">r**g</div> <div class="word" data-word="roil" data-hidden="r**l">r**l</div> <div class="word" data-word="room" data-hidden="r**m">r**m</div> <div class="word" data-word="root" data-hidden="r**t">r**t</div> <div class="word" data-word="ting" data-hidden="t**g">t**g</div> <div class="word" data-word="toil" data-hidden="t**l">t**l</div> <div class="word" data-word="tong" data-hidden="t**g">t**g</div> <div class="word" data-word="tool" data-hidden="t**l">t**l</div>
             </div>
+        </div>
+        
+
+        <div class="word-group">
+            <h2>⭐ 5 Letter Words</h2>
+            <div class="word-list">
+                <div class="word" data-word="gloom" data-hidden="g***m">g***m</div> <div class="word" data-word="going" data-hidden="g***g">g***g</div> <div class="word" data-word="groin" data-hidden="g***n">g***n</div> <div class="word" data-word="groom" data-hidden="g***m">g***m</div> <div class="word" data-word="light" data-hidden="l***t">l***t</div> <div class="word" data-word="login" data-hidden="l***n">l***n</div> <div class="word" data-word="night" data-hidden="n***t">n***t</div> <div class="word" data-word="right" data-hidden="r***t">r***t</div> <div class="word" data-word="rigor" data-hidden="r***r">r***r</div> <div class="word" data-word="thong" data-hidden="t***g">t***g</div>
+            </div>
+        </div>
+        
+
+        <div class="word-group">
+            <h2>⭐ 6 Letter Words</h2>
+            <div class="word-list">
+                <div class="word" data-word="goring" data-hidden="go***g">go***g</div> <div class="word" data-word="loving" data-hidden="lo***g">lo***g</div> <div class="word" data-word="mooing" data-hidden="mo***g">mo***g</div> <div class="word" data-word="moving" data-hidden="mo***g">mo***g</div> <div class="word" data-word="oiling" data-hidden="oi***g">oi***g</div> <div class="word" data-word="riling" data-hidden="ri***g">ri***g</div> <div class="word" data-word="throng" data-hidden="th***g">th***g</div> <div class="word" data-word="tiling" data-hidden="ti***g">ti***g</div> <div class="word" data-word="urging" data-hidden="ur***g">ur***g</div> <div class="word" data-word="violin" data-hidden="vi***n">vi***n</div> <div class="word" data-word="voting" data-hidden="vo***g">vo***g</div>
+            </div>
+        </div>
+        
+
+        <div class="word-group">
+            <h2>⭐ 7 Letter Words</h2>
+            <div class="word-list">
+                <div class="word" data-word="hooting" data-hidden="ho****g">ho****g</div> <div class="word" data-word="looting" data-hidden="lo****g">lo****g</div> <div class="word" data-word="moonlit" data-hidden="mo****t">mo****t</div> <div class="word" data-word="mooring" data-hidden="mo****g">mo****g</div> <div class="word" data-word="roiling" data-hidden="ro****g">ro****g</div> <div class="word" data-word="rooting" data-hidden="ro****g">ro****g</div> <div class="word" data-word="toiling" data-hidden="to****g">to****g</div> <div class="word" data-word="tooling" data-hidden="to****g">to****g</div>
+            </div>
+        </div>
+        
+
+        <div class="word-group">
+            <h2>⭐ 8 Letter Words</h2>
+            <div class="word-list">
+                <div class="word" data-word="grooving" data-hidden="gr****ng">gr****ng</div> <div class="word" data-word="lighting" data-hidden="li****ng">li****ng</div> <div class="word" data-word="righting" data-hidden="ri****ng">ri****ng</div>
+            </div>
+        </div>
+        
+
+        <div class="word-group">
+            <h2>⭐ 9 Letter Words</h2>
+            <div class="word-list">
+                <div class="word" data-word="moonlight" data-hidden="mo*****ht">mo*****ht</div>
+            </div>
+        </div>
+        
+
+        <div class="word-group">
+            <h2>⭐ 12 Letter Words</h2>
+            <div class="word-list">
+                <div class="word" data-word="moonlighting" data-hidden="mo********ng">mo********ng</div>
+            </div>
+        </div>
         
 
             <div class="word-group">
-                <h2>📝 4-Letter Required Words</h2>
+                <h2>💎 Bonus Word of the Day</h2>
                 <div class="word-list">
-                    <div class="word">BUST</div>
-                    <div class="word">CODA</div>
-                    <div class="word">COMP</div>
-                    <div class="word">EMIT</div>
-                    <div class="word">GIST</div>
-                    <div class="word">GOAD</div>
-                    <div class="word">INTO</div>
-                    <div class="word">MIME</div>
-                    <div class="word">MISS</div>
-                    <div class="word">MIST</div>
-                    <div class="word">MITT</div>
-                    <div class="word">NITS</div>
-                    <div class="word">OMIT</div>
-                    <div class="word">PERM</div>
-                    <div class="word">SIGN</div>
-                    <div class="word">SING</div>
-                    <div class="word">SITS</div>
-                    <div class="word">SUBS</div>
-                    <div class="word">TIME</div>
-                    <div class="word">TING</div>
-                    <div class="word">TINT</div>
-                    <div class="word">TONG</div>
+                    <div class="word" data-word="righto" data-hidden="ri***o">ri***o</div>
                 </div>
             </div>
-            
-
-            <div class="word-group">
-                <h2>📝 5-Letter Required Words</h2>
-                <div class="word-list">
-                    <div class="word">ADMIT</div>
-                    <div class="word">BUSTS</div>
-                    <div class="word">EMITS</div>
-                    <div class="word">MISTS</div>
-                    <div class="word">MITTS</div>
-                    <div class="word">MOIST</div>
-                    <div class="word">OMITS</div>
-                    <div class="word">REMIT</div>
-                    <div class="word">STING</div>
-                    <div class="word">STINT</div>
-                    <div class="word">TIMER</div>
-                    <div class="word">TINTS</div>
-                    <div class="word">USING</div>
-                    <div class="word">VOMIT</div>
-                </div>
-            </div>
-            
-
-            <div class="word-group">
-                <h2>📝 6-Letter Required Words</h2>
-                <div class="word-list">
-                    <div class="word">ADMITS</div>
-                    <div class="word">COMMIT</div>
-                    <div class="word">PERMIT</div>
-                    <div class="word">REMISS</div>
-                    <div class="word">REMITS</div>
-                    <div class="word">SIMMER</div>
-                    <div class="word">STINTS</div>
-                    <div class="word">SUBMIT</div>
-                    <div class="word">VOMITS</div>
-                </div>
-            </div>
-            
-
-            <div class="word-group">
-                <h2>📝 7-Letter Required Words</h2>
-                <div class="word-list">
-                    <div class="word">BUSSING</div>
-                    <div class="word">BUSTING</div>
-                    <div class="word">COMMITS</div>
-                    <div class="word">MISSING</div>
-                    <div class="word">MISSION</div>
-                    <div class="word">MISTING</div>
-                    <div class="word">PERMITS</div>
-                    <div class="word">SITTING</div>
-                    <div class="word">SUBMITS</div>
-                </div>
-            </div>
-            
-
-            <div class="word-group">
-                <h2>📝 8-Letter Required Words</h2>
-                <div class="word-list">
-                    <div class="word">EMISSION</div>
-                    <div class="word">EMITTING</div>
-                    <div class="word">MISUSING</div>
-                    <div class="word">OMISSION</div>
-                    <div class="word">OMITTING</div>
-                    <div class="word">VOMITING</div>
-                </div>
-            </div>
-            
-
-            <div class="word-group">
-                <h2>📝 9-Letter Required Words</h2>
-                <div class="word-list">
-                    <div class="word">ADMISSION</div>
-                    <div class="word">ADMITTING</div>
-                    <div class="word">REMISSION</div>
-                    <div class="word">REMITTING</div>
-                </div>
-            </div>
-            
-
-            <div class="word-group">
-                <h2>📝 10-Letter Required Words</h2>
-                <div class="word-list">
-                    <div class="word">COMMISSION</div>
-                    <div class="word">COMMITTING</div>
-                    <div class="word">PERMISSION</div>
-                    <div class="word">PERMITTING</div>
-                    <div class="word">SUBMISSION</div>
-                    <div class="word">SUBMITTING</div>
-                </div>
-            </div>
-            
-
-            <div class="word-group">
-                <h2>⭐ 4-Letter Bonus Words</h2>
-                <div class="word-list">
-                    <div class="word">BUSS</div>
-                    <div class="word">COMM</div>
-                    <div class="word">DOIT</div>
-                    <div class="word">GITS</div>
-                    <div class="word">SIMP</div>
-                    <div class="word">STIM</div>
-                    <div class="word">SUSS</div>
-                    <div class="word">TITI</div>
-                    <div class="word">TITS</div>
-                    <div class="word">TOIT</div>
-                </div>
-            </div>
-            
-
-            <div class="word-group">
-                <h2>⭐ 5-Letter Bonus Words</h2>
-                <div class="word-list">
-                    <div class="word">DOITS</div>
-                    <div class="word">GISTS</div>
-                    <div class="word">MIMER</div>
-                    <div class="word">MITIS</div>
-                    <div class="word">NISUS</div>
-                    <div class="word">SITUS</div>
-                    <div class="word">STIME</div>
-                    <div class="word">TITIS</div>
-                    <div class="word">TOITS</div>
-                </div>
-            </div>
-            
-
-            <div class="word-group">
-                <h2>⭐ 6-Letter Bonus Words</h2>
-                <div class="word-list">
-                    <div class="word">COGITO</div>
-                    <div class="word">COITUS</div>
-                    <div class="word">COMMIS</div>
-                    <div class="word">DACOIT</div>
-                    <div class="word">MISSUS</div>
-                    <div class="word">OTITIS</div>
-                    <div class="word">SIMPER</div>
-                    <div class="word">SITING</div>
-                    <div class="word">STINGO</div>
-                    <div class="word">SUSING</div>
-                    <div class="word">TIMBRE</div>
-                </div>
-            </div>
-            
-
-            <div class="word-group">
-                <h2>⭐ 7-Letter Bonus Words</h2>
-                <div class="word-list">
-                    <div class="word">COADMIT</div>
-                    <div class="word">COITION</div>
-                    <div class="word">DACOITS</div>
-                    <div class="word">PREMISS</div>
-                    <div class="word">SUBMISS</div>
-                    <div class="word">SUSSING</div>
-                    <div class="word">VOMITUS</div>
-                </div>
-            </div>
-            
-
-            <div class="word-group">
-                <h2>⭐ 8-Letter Bonus Words</h2>
-                <div class="word-list">
-                    <div class="word">COADMITS</div>
-                </div>
-            </div>
-            
-
-            <div class="word-group">
-                <h2>⭐ 11-Letter Bonus Words</h2>
-                <div class="word-list">
-                    <div class="word">COADMITTING</div>
-                </div>
-            </div>
-            
-            </div>
+        
             
             <div class="disclaimer">
-                <p><strong>Please use responsibly:</strong> This site is designed to help when you're truly stuck on a puzzle, not to skip the challenge entirely.</p>
-                <p>To that end, new solutions are published daily at <strong>9 PM BST</strong>.</p>
+                <p><strong>Please use responsibly:</strong> This site is designed to help when you're truly stuck on a puzzle, not to skip the challenge entirely or cheat the leaderboard.</p>
+                <p>To that end, new solutions are published daily at <strong>9 PM BST</strong> and optional words are not revealed.</p>
             </div>
         </main>
         
         <footer class="footer">
             <p> This site is in no way affiliated with Squaredle. Please visit <a href="https://squaredle.app" target="_blank">Squaredle</a> to play the official game and support them! </p>
-            <p>This project is open source and available on <a href="https://github.com" target="_blank">GitHub</a>.</p>
+            <p>This project is open source and available on <a href="https://github.com/Mcanroe/squaredle-helper" target="_blank">GitHub</a>.</p>
         </footer>
     </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const words = document.querySelectorAll('.word[data-word]');
+            
+            words.forEach(word => {
+                word.addEventListener('click', function() {
+                    const isRevealed = this.classList.contains('revealed');
+                    this.textContent = isRevealed ? this.getAttribute('data-hidden') : this.getAttribute('data-word');
+                    this.classList.toggle('revealed');
+                });
+            });
+        });
+    </script>
 </body>
 </html>
