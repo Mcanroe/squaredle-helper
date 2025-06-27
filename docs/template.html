@@ -93,23 +93,25 @@
             user-select: none;
         }
         
-        .word:hover {
-            background: linear-gradient(145deg, #63b3ed 0%, #3182ce 100%);
-            color: white;
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 8px 16px rgba(99, 179, 237, 0.3);
-            border-color: #63b3ed;
+        @media (hover: hover) and (pointer: fine) {
+            .word:hover {
+                background: linear-gradient(145deg, #63b3ed 0%, #3182ce 100%);
+                color: white;
+                transform: translateY(-2px) scale(1.02);
+                box-shadow: 0 8px 16px rgba(99, 179, 237, 0.3);
+                border-color: #63b3ed;
+            }
+            
+            .word.revealed:hover {
+                background: linear-gradient(145deg, #48bb78 0%, #38a169 100%);
+                box-shadow: 0 8px 16px rgba(104, 211, 145, 0.3);
+            }
         }
         
         .word.revealed {
             background: linear-gradient(145deg, #38a169 0%, #2f855a 100%);
             border-color: #68d391;
             color: #f0fff4;
-        }
-        
-        .word.revealed:hover {
-            background: linear-gradient(145deg, #48bb78 0%, #38a169 100%);
-            box-shadow: 0 8px 16px rgba(104, 211, 145, 0.3);
         }
         
         .footer {
@@ -131,9 +133,11 @@
             transition: color 0.2s ease;
         }
         
-        .footer a:hover {
-            color: #90cdf4;
-            text-decoration: underline;
+        @media (hover: hover) and (pointer: fine) {
+            .footer a:hover {
+                color: #90cdf4;
+                text-decoration: underline;
+            }
         }
         
         @media (max-width: 600px) {
