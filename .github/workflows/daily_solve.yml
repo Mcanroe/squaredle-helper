@@ -1,0 +1,56 @@
+name: Daily Squaredle Solver
+
+on:
+  schedule:
+    - cron: '0 20 * * *'  # Daily at 8 PM UTC (9 PM BST)
+  workflow_dispatch:  # Allow manual runs
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+          
+      - name: Setup Python
+        run: uv python install 3.12
+          
+      - name: Install dependencies
+        run: uv sync
+        
+      - name: Run solver
+        run: uv run src/squaredle_helper.py
+        
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+        
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: ./docs
+
+  deploy:
+    needs: build
+
+    permissions:
+      pages: write     
+      id-token: write  
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
